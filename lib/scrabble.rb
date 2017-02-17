@@ -1,3 +1,5 @@
+require 'pry'
+
 class Scrabble
 
   def score(word)
@@ -17,4 +19,20 @@ class Scrabble
       "Y"=>4, "Z"=>10
     }
   end
+
+  def score_with_multipliers(*args)
+    if args[2] == nil
+      score(args[0])
+    else
+      word = args[0]
+      letters = args[1]
+      multiplier = args[2]
+      if word.length > 6
+        (letters.reduce(:+) + 10) * multiplier
+      else
+        letters.reduce(:+) * multiplier
+      end
+    end
+  end
+
 end
